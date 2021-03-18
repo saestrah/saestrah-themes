@@ -1,0 +1,734 @@
+<!----
+ 
+    entity || by saestrah || january 2021
+        
+        · base code by sorrism
+        · scroll to top by paul underwood
+        · smoothscroll by balazs galambosi
+        · flexible frames by nouvae
+        · npf images readjustment by glenthemes
+        · audio player, notecount script & search bar script by shythemes
+        · photosets by annasthms and eggdesign
+        · nightmode by eggdesign
+        · icons by line-awesome
+        · tooltips by malihu
+        
+        || terms of use:
+        
+        · don't remove credit
+        · don't repost or redistribute
+        · don't take parts of the code and use as your own
+        
+        || notes:
+ 
+        · for customisation hints, search for "a note from saestrah"
+
+---->
+ 
+<!DOCTYPE html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{block:PostSummary}{PostSummary} : {/block:PostSummary}{Title}</title>
+
+<link rel="shortcut icon" href="{Favicon}">
+ 
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+{block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
+
+<!---- defaults ---->
+
+<meta name="color:Background" content="#ffffff"/>
+<meta name="color:Night Background" content="#292f36"/>
+<meta name="color:Base" content="#f6f6f6"/>
+<meta name="color:Night Base" content="#21262c"/>
+<meta name="color:Text" content="#888888"/>
+<meta name="color:Night Text" content="#cccccc"/>
+<meta name="color:Link" content="#000000"/>
+<meta name="color:Night Link" content="#ffffff"/>
+<meta name="color:Accent" content="#ff1166"/>
+<meta name="color:Night Accent" content="#b3f02e"/>
+<meta name="color:Title"content="#000000"/>
+<meta name="color:Night Title" content="#ffffff"/>
+<meta name="color:Tooltip Text" content="#ffffff"/>
+<meta name="color:Night Tooltip Text" content="#000000"/>
+<meta name="color:Scrollbar" content="#cccccc"/>
+
+<meta name="select:Title Font" content="Big Shoulders Inline Display"/>
+<meta name="select:Title Font" content="Bungee"/>
+<meta name="select:Title Font" content="Bungee Shade"/>
+<meta name="select:Title Font" content="Codystar"/>
+<meta name="select:Title Font" content="EB Garamond"/>
+<meta name="select:Title Font" content="Ewert"/>
+<meta name="select:Title Font" content="Fredericka the Great"/>
+<meta name="select:Title Font" content="Grenze Gotisch"/>
+<meta name="select:Title Font" content="Inria Sans"/>
+<meta name="select:Title Font" content="Inria Serif"/>
+<meta name="select:Title Font" content="Karla"/>
+<meta name="select:Title Font" content="Kumar One Outline"/>
+<meta name="select:Title Font" content="La Belle Aurore"/>
+<meta name="select:Title Font" content="Lato"/>
+<meta name="select:Title Font" content="Lora"/>
+<meta name="select:Title Font" content="Modak"/>
+<meta name="select:Title Font" content="Monoton"/>
+<meta name="select:Title Font" content="Montserrat Subrayada"/>
+<meta name="select:Title Font" content="Nerko One"/>
+<meta name="select:Title Font" content="Playfair Display"/>
+<meta name="select:Title Font" content="Roboto Condensed"/>
+<meta name="select:Title Font" content="Roboto Slab"/>
+<meta name="select:Title Font" content="Sarina"/>
+<meta name="select:Title Font" content="Staatliches"/>
+<meta name="select:Title Font" content="UnifrakturCook"/>
+
+<meta name="select:Body Font" content="Big Shoulders Inline Display"/>
+<meta name="select:Body Font" content="Bungee"/>
+<meta name="select:Body Font" content="Bungee Shade"/>
+<meta name="select:Body Font" content="Codystar"/>
+<meta name="select:Body Font" content="EB Garamond"/>
+<meta name="select:Body Font" content="Ewert"/>
+<meta name="select:Body Font" content="Fredericka the Great"/>
+<meta name="select:Body Font" content="Grenze Gotisch"/>
+<meta name="select:Body Font" content="Inria Sans"/>
+<meta name="select:Body Font" content="Inria Serif"/>
+<meta name="select:Body Font" content="Karla"/>
+<meta name="select:Body Font" content="Kumar One Outline"/>
+<meta name="select:Body Font" content="La Belle Aurore"/>
+<meta name="select:Body Font" content="Lato"/>
+<meta name="select:Body Font" content="Lora"/>
+<meta name="select:Body Font" content="Modak"/>
+<meta name="select:Body Font" content="Monoton"/>
+<meta name="select:Body Font" content="Montserrat Subrayada"/>
+<meta name="select:Body Font" content="Nerko One"/>
+<meta name="select:Body Font" content="Playfair Display"/>
+<meta name="select:Body Font" content="Roboto Condensed"/>
+<meta name="select:Body Font" content="Roboto Slab"/>
+<meta name="select:Body Font" content="Sarina"/>
+<meta name="select:Body Font" content="Staatliches"/>
+<meta name="select:Body Font" content="UnifrakturCook"/>
+
+<meta name="if:Hue Wash" content="1"/>
+<meta name="if:Search" content="1"/>
+<meta name="if:Updates" content="1"/>
+<meta name="if:Small Cursor" content="1"/>
+<meta name="if:Uppercase Accents" content="1"/>
+<meta name="if:Tags On Hover" content="1"/>
+<meta name="if:Invert Tumblr Controls" content="1"/>
+
+<meta name="text:Body Font Size" content="13px"/>
+<meta name="text:Body Font Weight" content="400"/>
+<meta name="text:Title Font Size" content="28px"/>
+<meta name="text:Title Font Weight" content="400"/>
+
+<meta name="text:Search Placeholder" content="search tags"/>
+<meta name="text:Title Tooltip" content=""/>
+
+<meta name="text:Home Title" content="home"/>
+<meta name="text:Ask Title" content="ask"/>
+<meta name="text:Archive Title" content="archive"/>
+<meta name="text:Shuffle Title" content="shuffle"/>
+
+<meta name="text:Link 1" content="link one"/>
+<meta name="text:Link 1 URL" content="/"/>
+<meta name="text:Link 1 Tooltip" content=""/>
+
+<meta name="text:Link 2" content="link two"/>
+<meta name="text:Link 2 URL" content="/"/>
+<meta name="text:Link 2 Tooltip" content=""/>
+
+<meta name="text:Link 3" content="link three"/>
+<meta name="text:Link 3 URL" content="/"/>
+<meta name="text:Link 3 Tooltip" content=""/>
+
+<meta name="text:Link 4" content="link four"/>
+<meta name="text:Link 4 URL" content="/"/>
+<meta name="text:Link 4 Tooltip" content=""/>
+
+<meta name="text:Link 5" content="link five"/>
+<meta name="text:Link 5 URL" content="/"/>
+<meta name="text:Link 5 Tooltip" content=""/>
+
+<meta name="text:Update 1 Title" content="update one"/>
+<meta name="text:Update 1 Content" content="here is an update"/>
+<meta name="text:Update 2 Title" content="update two"/>
+<meta name="text:Update 2 Content" content="here is a second update"/>
+<meta name="text:Update 3 Title" content="update three"/>
+<meta name="text:Update 3 Content" content="and here is a third update"/>
+
+<!---- scripts ---->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="//code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="https://rawgit.com/robinpx/tumblr/master/scripts/flexibleFrames/flexibleFrames.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.1/SmoothScroll.min.js"></script>
+<script src="https://static.tumblr.com/rzl30kg/eAxm7a751/jquery.style-my-tooltips.js"></script>
+<script src="https://static.tumblr.com/0podkko/qWqq8va08/photosets.js"></script>
+<link href="https://static.tumblr.com/0podkko/oDSpg7y88/photosets.css" rel="stylesheet">
+<script src ="//static.tumblr.com/fwgzvyf/Oj1o08f6h/shythemes.vr.js"></script>
+<link href="https://maxst.icons8.com/vue-static/landings/line-awe
+some/line-awesome/1.3.0/css/line-awesome.min.css" rel="stylesheet">
+<script src="//saestrah.github.io/portfolio/entity/entity.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="//saestrah.github.io/portfolio/entity/entity.css"/>
+
+<!---- fonts  ---->
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Display:wght@100;300;400;700;900&family=Bungee&family=Bungee+Shade&family=Codystar:wght@300;400&family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Ewert&family=Fredericka+the+Great&family=Grenze+Gotisch:wght@100;300;400;700&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Kumar+One+Outline&family=La+Belle+Aurore&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Modak&family=Monoton&family=Montserrat+Subrayada:wght@400;700&family=Nerko+One&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Sarina&family=Staatliches&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+<style type="text/css">
+
+/* root variables  */
+
+:root {
+    --background:{color:Background};
+    --nightbackground:{color:Night Background};
+    --rgbbackground:{RGBcolor:Background};
+    --rgbnightbackground:{RGBcolor:Night Background};
+    --base:{color:Base};
+    --nightbase:{color:Night Base};
+    --text:{color:Text};
+    --nighttext:{color:Night Text};
+    --link:{color:Link};
+    --nightlink:{color:Night Link};
+    --accent:{color:Accent};
+    --nightaccent:{color:Night Accent};
+    --title:{color:Title};
+    --nighttitle:{color:Night Title};
+    --tooltiptext:{color:Tooltip Text};
+    --nighttooltiptext:{color:Night Tooltip Text};
+    --scrollbar:{color:Scrollbar};
+    
+    --bodyfont:{select:Body Font};
+    --bodyfontsize:{text:Body Font Size};
+    --bodyfontweight:{text:Body Font Weight};
+    --titlefont:{select:Title Font};
+    --titlefontsize:{text:Title Font Size};
+    --titlefontweight:{text:Title Font Weight};
+}
+
+/*  css  */
+
+{block:ifUppercaseAccents}
+#s-m-t-tooltip, h1, h2, h3, h4, #linkicons, .updatetitle, postinfo, .title, a.read_more, .label, .tags, a.more_notes_link { text-transform:uppercase; }
+{/block:ifUppercaseAccents}
+
+{block:ifInvertTumblrControls}
+iframe.tmblr-iframe { white-space:nowrap; -webkit-filter: invert(100%); -moz-filter:invert(100%); -o-filter:invert(100%); -ms-filter:invert(100%); filter:invert(100%); }
+{/block:ifInvertTumblrControls}
+
+{block:PermalinkPage}
+.top { opacity:0; }
+section { padding-bottom:50px; }
+.posts { margin-bottom:50px; }
+.tags { opacity:1; }
+{/block:PermalinkPage}
+
+{block:ifHueWash}
+.posts img, .video { filter: url(#hue-wash); }
+{/block:ifHueWash}
+
+{block:ifTagsOnHover}
+.tags { opacity:0; }
+.posts:hover .tags {
+    opacity:1;
+    transition: all 0.5s ease-in-out;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+}
+{/block:ifTagsOnHover}
+
+{block:ifSmallCursor}
+* { cursor:url(https://i.imgur.com/dHusUiR.png),auto }
+body { cursor:url(https://i.imgur.com/dHusUiR.png),auto }
+iframe.tmblr-iframe:hover, a, a:hover, .updates, .updatesicon, ul.linksmenu .linksbutton, .ph img { cursor:url(https://i.imgur.com/ZM41vky.png),progress!important; }
+[photoset-layout] div { cursor:url(https://i.imgur.com/ZM41vky.png),progress!important; }
+{/block:ifSmallCursor}
+
+/*  a note from saestrah:
+
+to add or reduce the size of the gap between images or gifs in photosets, add the following to the css and change the pixel value to your liking:
+ 
+[photoset-layout] { grid-gap:3px; }
+
+*/
+
+</style>
+</head>
+<body>
+
+<!--------------------------------  hue filter
+
+a note from saestrah:
+
+this is where you can change the colour of the image filters. if you have a colour in mind, convert the hexcode to rgba (i use "http://www.hex2rgba.devoth.com/", and visit "http://andresgalante.com/RGBAtoFeColorMatrix/" to get the matrix values. for example:
+
+    hex colour: #F16
+    rgba value: rgba(255, 17, 102, 1)
+    matrix: 1     0     0     0     0
+            0     0.07  0     0     0
+            0     0     0.4   0     0
+            0     0     0     1     0
+
+---->
+
+{block:ifHueWash}
+<svg>
+<filter id="hue-wash">
+
+<feColorMatrix type="matrix" values="1     0     0     0     0
+              0     0.07     0     0     0
+              0     0     0.4     0     0
+              0     0     0     1     0 "/>
+</filter>
+</svg>
+{/block:ifHueWash}
+
+<!--------------------------------  header  ---->
+
+<header>
+<a href="/" class="maintitle" {block:ifTitleTooltip}title="{text:Title Tooltip}"{/block:ifTitleTooltip}>{Title}</a>
+
+<!----  mobile navigation  ---->
+
+<mobilenav>
+    <ul id="linksmenu" class="linksmenu">
+    <li><div class="linksbutton"><span class="las la-bars"></span></div>
+        <ul class="mobilelinksbox">
+        <li class="mobilelinks">
+            <li><span><a href="https://tumblr.com/follow/{Name}">follow</a></span></li>
+            <li><span><a href="/">home</a></span></li>
+            <li><span><a href="/ask">ask</a></span></li>
+            <li><span><a href="/archive">archive</a></span></li>
+            {block:ifLink1}<li><span><a href="{text:Link 1 URL}">{text:Link 1}</a></span></li>{/block:ifLink1}
+            {block:ifLink2}<li><span><a href="{text:Link 2 URL}">{text:Link 2}</a></span></li>{/block:ifLink2}
+            {block:ifLink3}<li><span><a href="{text:Link 3 URL}">{text:Link 3}</a></span></li>{/block:ifLink3}
+            {block:ifLink4}<li><span><a href="{text:Link 4 URL}">{text:Link 4}</a></span></li>{/block:ifLink4}
+            {block:ifLink5}<li><span><a href="{text:Link 5 URL}">{text:Link 5}</a></span></li>{/block:ifLink5}
+        </li>
+        </ul>
+    </li>
+    </ul>
+</mobilenav>
+
+<!----  search bar  ---->
+
+{block:ifSearch}
+<div class="search">
+    <a class="searchbtn"><span class="las la-search"></span></a>
+    <div class="search-wrapper"></span><form class="search" action="javascript:return false"><input type="text" class="query" placeholder="{text:Search Placeholder}"></form></div>
+</div>
+{/block:ifSearch}
+
+</header>
+
+<!----  description  ---->
+
+<div class="description">{Description}</div>
+
+<!----  link icons
+
+a note from saestrah:
+
+to change the icons, visit https://icons8.com/line-awesome and change "las-la-[something]" to the code for the image you like. not all icons use the same format (e.g. the spotify icon is "lab-la-spotify"). to delete icon links, just delete the line of code you don't want from the html below  
+
+---->
+
+{block:ifHomeTitle}<a id="linkicons" class="homebtn" href="/" title="home"><span class="las la-home"></span>{text:Home Title}</a>{/block:ifHomeTitle}
+{block:ifAskTitle}<a id="linkicons" class="askbtn" href="/ask" title="ask"><span class="las la-envelope"></span>{text:Ask Title}</a>{/block:ifAskTitle}
+{block:ifArchiveTitle}<a id="linkicons" class="archivebtn" href="/archive" title="archive"><span class="las la-archive"></span>{text:Archive Title}</a>{/block:ifArchiveTitle}
+{block:ifShuffleTitle}<a id="linkicons" class="shufflebtn" href="/random" title="shuffle"><span class="las la-random"></span>{text:Shuffle Title}</a>{/block:ifShuffleTitle}
+{block:ifLink1}<a id="linkicons" class="link1btn" href="{text:Link 1 URL}" {block:ifLink1Tooltip}title="{text:Link 1 Tooltip}"{/block:ifLink1Tooltip}><span class="las la-eye"></span>{text:Link 1}</a>{/block:ifLink1}
+{block:ifLink2}<a id="linkicons" class="link2btn" href="{text:Link 2 URL}" {block:ifLink2Tooltip}title="{text:Link 2 Tooltip}"{/block:ifLink2Tooltip}><span class="las la-spider"></span>{text:Link 2}</a>{/block:ifLink2}
+{block:ifLink3}<a id="linkicons" class="link3btn" href="{text:Link 3 URL}" {block:ifLink3Tooltip}title="{text:Link 3 Tooltip}"{/block:ifLink3Tooltip}><span class="las la-fire-alt"></span>{text:Link 3}</a>{/block:ifLink3}
+{block:ifLink4}<a id="linkicons" class="link4btn" href="{text:Link 4 URL}" {block:ifLink4Tooltip}title="{text:Link 4 Tooltip}"{/block:ifLink4Tooltip}><span class="las la-cloud"></span>{text:Link 4}</a>{/block:ifLink4}
+{block:ifLink5}<a id="linkicons" class="link5btn" href="{text:Link 5 URL}" {block:ifLink5Tooltip}title="{text:Link 5 Tooltip}"{/block:ifLink5Tooltip}><span class="las la-skull-crossbones"></span>{text:Link 5}</a>{/block:ifLink5}
+
+<!----  updates  ---->
+
+{block:ifUpdates}
+<div class="updates">
+    <div class="updatesicon"><span class="las la-plus"></span></div>
+<div class="updatecontent">
+    <span class="updatetitle">{text:Update 1 Title} </span>{text:Update 1 Content}</p>
+    <span class="updatetitle">{text:Update 2 Title} </span>{text:Update 2 Content}</p>
+    <span class="updatetitle">{text:Update 3 Title} </span>{text:Update 3 Content}
+</div></div>
+{/block:ifUpdates}
+
+<!--------------------------------  posts  ---->
+
+<section id="entries">
+{block:Posts}
+
+<!----  post info  ---->
+
+{block:Date}
+<postinfo>
+
+<div class="when">
+    <a href="{Permalink}"><span>{DayOfMonthWithZero}</br> — </br>
+    {MonthNumberWithZero}</a>  <!---- a note from saestrah: to put the month number before the day of month, just swap these variables  ---->
+</div>
+
+<div class="randl"><a class="reblog" href="{ReblogURL}" target="_blank">reblog</a><a class="like-b" href="#">{LikeButton}<span class="b">like</span></a></div>
+
+</postinfo>
+{/block:Date}
+
+<article class="posts {block:Caption}captioned{/block:Caption}" post-type="{PostType}">
+
+<!----  textposts  ---->
+
+{block:Text}
+<div class="post text" id="{PostID}">
+{block:Title}<div class="title">{title}</div>{/block:Title}
+{block:RebloggedFrom}
+    {block:Reblogs}
+    {block:IsActive}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsActive}
+    {block:IsDeactivated}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user deactivated" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsDeactivated}
+    {/block:Reblogs}
+{/block:RebloggedFrom}
+{block:NotReblog}
+    <li class="comment">
+        <div class="tex">{Body}</div>
+    </li>
+{/block:NotReblog}
+</div>
+{/block:Text}
+
+<!----  quotes  ---->
+
+{block:Quote}
+<div class="post" id="{PostID}">
+<div class="quote">{Quote}</div>
+{block:Source}<div class="source">{Source}</div>{/block:Source}
+</div>
+{/block:Quote}
+
+<!----  links  ---->
+
+{block:Link}
+<div class="post" id="{PostID}">
+<div class="title"><a href="{URL}">{Name}</a></div>
+{block:Description}
+    {block:NotReblog}
+        <li class="comment">
+            <div class="tex">{Description}</div>
+        </li>
+    {/block:NotReblog}
+{/block:Description}
+{block:RebloggedFrom}
+    {block:Reblogs}
+    {block:IsActive}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsActive}
+    {block:IsDeactivated}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user deactivated" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsDeactivated}
+    {/block:Reblogs}
+{/block:RebloggedFrom}
+</div>
+{/block:Link}
+
+<!----  asks  ---->
+
+{block:Answer}
+<div class="post" id="{PostID}">
+<div class="question"><span class="asker">{Asker} sent: </span><p>{Question}</div>
+ 
+{block:NotReblog}
+<div class="answer">{Answer}</div>
+{/block:NotReblog}
+ 
+{block:RebloggedFrom}
+{block:Answerer}
+<div class="answer">
+<span class="answerer">{Answerer} replied:</span><span class="tex">{Answer}</span>
+</div>
+{/block:Answerer}
+    {block:Reblogs}
+    {block:IsActive}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsActive}
+    {block:IsDeactivated}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user deactivated" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsDeactivated}
+    {/block:Reblogs}
+{/block:RebloggedFrom}
+</div>
+{/block:Answer}
+
+<!----  chat  ---->
+
+{block:Chat}
+<div class="post" id="{PostID}">
+{block:Title}<div id="title">{Title}</div>{/block:Title}
+<ol class="chat">
+    {block:Lines}
+        <li class="l {Alt}">
+            {block:Label}<span class="label">{Label}</span>{/block:Label}             {Line}
+        </li>
+    {/block:Lines}
+</ol>
+</div>
+{/block:Chat}
+
+<!----  photos and photosets  ---->
+
+<div class="post" id="{PostID}"><div class="ph">
+
+{block:Photo}{linkopentag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>{LinkCloseTag}{/block:Photo}
+
+{block:Photoset}
+<div class="photoset-grid" photoset-layout="{PhotosetLayout}">{block:Photos}<div data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" onclick="lightbox(this)"><img class="ph" src="{PhotoURL-HighRes}" /></div>{/block:Photos}</div></div>
+{/block:Photoset}
+
+<!----  video  ---->
+
+{block:Video}<div class="post video" id="{PostID}">{VideoEmbed-500}</div>{/block:Video}
+
+<!----  audio  ---->
+
+{block:Audio}
+<div class="post" id="{PostID}">
+{block:AudioPlayer}
+<div class="hold">
+<div class="player"><div class="play">{AudioPlayerBlack}</div></div>
+<div class="audio_info">
+    {block:TrackName}<span class="track">{TrackName}</span>{/block:TrackName}
+    {block:Artist}<span class="artist">{Artist}</span>{/block:Artist}
+</div>
+</div>
+{/block:AudioPlayer}
+</div>
+{/block:Audio}
+
+<!----  captions and reblogs  ---->
+
+{block:Caption}
+    {block:Reblogs}
+    {block:IsActive}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsActive}
+    {block:IsDeactivated}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user deactivated" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsDeactivated}
+    {/block:Reblogs}
+    {block:NotReblog}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user" target="_blank">{Name}</a>
+            <div class="tex">{Caption}</div>
+        </li>
+    {/block:NotReblog}
+{/block:Caption}
+
+<!----  tags  ---->
+
+{block:HasTags}<div class="tags">{block:Tags}<a class="tag" href="{TagURL}">{Tag}</a>{/block:Tags}</div>{/block:HasTags}
+
+<!----  permalinks  ---->
+
+</article>
+{block:PostNotes}
+{block:RebloggedFrom}
+
+<div class="permainfo">
+{block:NoteCount}<span class="nc"><a class="notecount" href="{Permalink}">{NoteCountWithLabel}</a></span>{/block:NoteCount}<span class="via">via: <a href="{ReblogParentURL}">{ReblogParentName}</a>{block:ContentSource} &nbsp&mdash;&nbsp source: <a href="{ReblogRootURL}">{ReblogRootName}</a>{/block:ContentSource}</span>
+</div>
+
+{/block:RebloggedFrom}
+<div class="postnotes">{PostNotes}</div>
+</article>
+
+{/block:PostNotes}
+{/block:Posts}
+
+<!----  pagination  ---->
+
+<footer>
+{block:PreviousPage}
+<span><a class="prev" href="{PreviousPage}" title="previous page"><span class="las la-arrow-left"></span></a></span>
+{/block:PreviousPage}
+{block:NextPage}
+<span><a class="next" href="{NextPage}" title="next page"><span class="las la-arrow-right"></span></a></span>
+{/block:NextPage}
+</footer>
+
+</section>
+
+<!----  buttons  ---->
+
+<a class="cc"><span class="las la-bars"></span></a>
+<a class="nightbtn" title="night mode"><span class="las la-moon"></span></a>
+<a class="daybtn" title="day mode" hidden="hidden"><span class="las la-sun"></span></a>
+<a class="bfontbtn" title="change font size">Aa</a>
+<a class="sfontbtn" title="change font size" hidden="hidden">Aa</a>
+<a class="top" href="/" title="back to top"><span class="las la-arrow-up"></span></a>
+<a class="credit" href="https://saestrah.tumblr.com" title="saestrah themes" target="_blank"><span class="las la-hat-cowboy"></span></a>
+
+<!--------------------------------  scripts  ---->
+
+<!----  search bar by @shythemes  ---->
+
+<script>
+    $(document).ready(function(){
+    $('.search').submit(function(event){
+    var value = $('input:first').val();
+    location.replace('https://{Name}.tumblr.com/tagged/' + value);
+    });
+    });
+</script>
+
+<!----  scroll to top by paul underwood  ---->
+
+<script>
+$(document).ready(function(){
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $('.top').fadeIn();
+        } else {
+            $('.top').fadeOut();
+        }
+    });
+   
+    $('.top').click(function(){
+        $('html, body').animate({scrollTop : 0},800);
+        return false;
+    });
+   
+});
+</script>
+
+<!----  audio player by @shythemes  ---->
+
+<script>
+    $(document).ready(function(){
+        $('iframe.tumblr_audio_player').load( function() {
+            $('iframe.tumblr_audio_player').contents().find("head").append($("<style type='text/css'> .audio-player{background:transparent;!important}</style>"));
+        });
+    });
+</script>
+
+<!----  photosets by @annasthms and @eggdesign  ---->
+
+<script>
+function gatherData(images, arr) {
+  for (let i = 0; i < images.length; i++) {
+    let currentData = {
+      "width": images[i].getAttribute('data-width'),
+      "height": images[i].getAttribute('data-height'),
+      "low_res": images[i].getAttribute('data-lowres'),
+      "high_res": images[i].getAttribute('data-highres')
+    };
+    arr.push(currentData);
+  }
+}
+function getIndex(elem) {
+  let i = 0;
+  while( (elem = elem.previousElementSibling) != null ) i++;
+  return i;
+}
+function lightbox(elem) {
+  let currentPhotoset = elem.parentNode;
+  let photosetPhotos = currentPhotoset.getElementsByTagName('div');
+  let data = [];
+  gatherData(photosetPhotos, data);
+  Tumblr.Lightbox.init(data, getIndex(elem) + 1);
+}
+$(document).ready(function(){
+    undoPhotoset({
+        'posts':'.text',
+        'text class':'',
+        'photoset class':'ph'
+    },false);
+});
+</script>
+
+<!----  npf images readjustment by @glenthemes  ---->
+
+<link href="//dl.dropbox.com/s/bnoj86mka0bkplb/npf-override.css" rel="stylesheet">
+<script src="//dl.dropbox.com/s/vwrm94pcg4c9e71/npf-evenize.js"></script>
+<script src="//dl.dropbox.com/s/aqo7pinjzfub4tn/npf-legacy.js"></script>
+
+<style type="text/css">
+:root {
+    --NPF-Image-Spacing:4px;
+    --NPF-Bottom-Gap-From-Captions:0;
+}
+</style>
+
+<!---- flexible frames by @nouvae  ---->
+
+<script>
+$(document).ready(function(){
+    function flexFrame() {
+    $("entries").each(function() {
+        $(this).find("iframe").wrap("<div class='iframe-flex'></div>");
+        flexibleFrames($(".iframe-flex"));
+    });
+    flexibleFrames($(".video"));}
+    $(document).ready(flexFrame);
+});
+</script>
+
+<!---- notecount shortener by @shythemes  ---->
+
+<script>
+    var $container = $('.nc');
+   $container.find('.notecount').each(function(){
+       var n = $(this).html().split(' ')[0].replace(/,/g, '');
+       if (n > 999) {
+           n = Math.floor(n / 100) / 10;
+           $(this).text(n + 'k notes');
+       }
+   });
+</script>
+
+<!----  tooltips by malihu  ---->
+
+<script type="text/javascript">
+(function($){
+    $(document).ready(function(){
+        $("[title]").style_my_tooltips({
+            tip_follows_cursor:true,
+            tip_delay_time:200,
+            tip_fade_speed:300
+        });
+    });
+})(jQuery);
+</script>
+
+<!--------------------------------  end of scripts  ---->
+
+</body>
+</html>

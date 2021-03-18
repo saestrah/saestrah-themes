@@ -1,0 +1,755 @@
+<!----
+
+    tangerine || by saestrah || december 2020
+        
+        · base code by sorrism
+        · scroll to top by paul underwood
+        · smoothscroll by balazs galambosi
+        · flexible frames by nouvae
+        · audio player and notecount script by shythemes
+        · photosets by annasthms and eggdesign
+        · nightmode by eggdesign
+        · icons by line-awesome
+        · tooltips by malihu
+        
+        || terms of use:
+        
+        · don't remove credit
+        · don't repost or redistribute
+        · don't take parts of the code and use as your own
+	
+	|| notes:
+
+        · for customisation hints search for "a note from saestrah"
+
+---->
+ 
+<!DOCTYPE html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>{block:PostSummary}{PostSummary} : {/block:PostSummary}{Title}</title>
+
+<link rel="shortcut icon" href="{Favicon}">
+ 
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+{block:Description}<meta name="description" content="{MetaDescription}" />{/block:Description}
+
+<!---- defaults ---->
+
+<meta name="image:Sidebar" content=""/>
+<meta name="image:Tab" content=""/>
+
+<meta name="color:Background" content="#fcf5f2"/>
+<meta name="color:Night Background" content="#292f36"/>
+<meta name="color:Sidebar" content="#fb4c16"/>
+<meta name="color:Night Sidebar" content="#0c131a"/>
+<meta name="color:Sidebar Text" content="#f6f6f6"/>
+<meta name="color:Night Sidebar Text" content="#ffffff"/>
+<meta name="color:Buttons" content="#fc7045"/>
+<meta name="color:Night Buttons" content="#fc7045"/>
+<meta name="color:Tab" content="#f05f05"/>
+<meta name="color:Night Tab" content="#1a2633"/>
+<meta name="color:Tab Text" content="#ffffff"/>
+<meta name="color:Night Tab Text" content="#f05f05"/>
+<meta name="color:Base" content="#fdb7a2"/>
+<meta name="color:Night Base" content="#172331"/>
+<meta name="color:Text" content="#666666"/>
+<meta name="color:Night Text" content="#cccccc"/>
+<meta name="color:Links" content="#000000"/>
+<meta name="color:Night Links" content="#ffffff"/>
+<meta name="color:Accent" content="#ff9100"/>
+<meta name="color:Night Accent" content="#8ac39b"/>
+<meta name="color:Title"content="#ffffff"/>
+<meta name="color:Night Title" content="#ffffff"/>
+<meta name="color:Subtitle"content="#000000"/>
+<meta name="color:Night Subtitle"content="#ffffff"/>
+<meta name="color:Borders" content="#fad6ab"/>
+<meta name="color:Night Borders" content="#eeeeee"/>
+<meta name="color:Tooltip Text" content="#ffffff"/>
+<meta name="color:Night Tooltip Text" content="#000000"/>
+<meta name="color:Scrollbar" content="#cccccc"/>
+
+<meta name="select:Title Font" content="Big Shoulders Inline Display"/>
+<meta name="select:Title Font" content="Bungee"/>
+<meta name="select:Title Font" content="Bungee Shade"/>
+<meta name="select:Title Font" content="Codystar"/>
+<meta name="select:Title Font" content="EB Garamond"/>
+<meta name="select:Title Font" content="Ewert"/>
+<meta name="select:Title Font" content="Fredericka the Great"/>
+<meta name="select:Title Font" content="Grenze Gotisch"/>
+<meta name="select:Title Font" content="Inria Sans"/>
+<meta name="select:Title Font" content="Inria Serif"/>
+<meta name="select:Title Font" content="Karla"/>
+<meta name="select:Title Font" content="Kumar One Outline"/>
+<meta name="select:Title Font" content="La Belle Aurore"/>
+<meta name="select:Title Font" content="Lato"/>
+<meta name="select:Title Font" content="Lora"/>
+<meta name="select:Title Font" content="Modak"/>
+<meta name="select:Title Font" content="Monoton"/>
+<meta name="select:Title Font" content="Montserrat Subrayada"/>
+<meta name="select:Title Font" content="Nerko One"/>
+<meta name="select:Title Font" content="Playfair Display"/>
+<meta name="select:Title Font" content="Roboto Condensed"/>
+<meta name="select:Title Font" content="Roboto Slab"/>
+<meta name="select:Title Font" content="Sarina"/>
+<meta name="select:Title Font" content="Staatliches"/>
+<meta name="select:Title Font" content="UnifrakturCook"/>
+ 
+<meta name="select:Body Font" content="Big Shoulders Inline Display"/>
+<meta name="select:Body Font" content="Bungee"/>
+<meta name="select:Body Font" content="Bungee Shade"/>
+<meta name="select:Body Font" content="Codystar"/>
+<meta name="select:Body Font" content="EB Garamond"/>
+<meta name="select:Body Font" content="Ewert"/>
+<meta name="select:Body Font" content="Fredericka the Great"/>
+<meta name="select:Body Font" content="Grenze Gotisch"/>
+<meta name="select:Body Font" content="Inria Sans"/>
+<meta name="select:Body Font" content="Inria Serif"/>
+<meta name="select:Body Font" content="Karla"/>
+<meta name="select:Body Font" content="Kumar One Outline"/>
+<meta name="select:Body Font" content="La Belle Aurore"/>
+<meta name="select:Body Font" content="Lato"/>
+<meta name="select:Body Font" content="Lora"/>
+<meta name="select:Body Font" content="Modak"/>
+<meta name="select:Body Font" content="Monoton"/>
+<meta name="select:Body Font" content="Montserrat Subrayada"/>
+<meta name="select:Body Font" content="Nerko One"/>
+<meta name="select:Body Font" content="Playfair Display"/>
+<meta name="select:Body Font" content="Roboto Condensed"/>
+<meta name="select:Body Font" content="Roboto Slab"/>
+<meta name="select:Body Font" content="Sarina"/>
+<meta name="select:Body Font" content="Staatliches"/>
+<meta name="select:Body Font" content="UnifrakturCook"/>
+
+<meta name="text:Body Font Size" content="14px"/>
+<meta name="text:Body Font Weight" content="400"/>
+<meta name="text:Title Font Size" content="28px"/>
+<meta name="text:Title Font Weight" content="400"/>
+
+<meta name="text:Sidebar Image Tooltip" content=""/>
+<meta name="text:Title Tooltip" content="refresh"/>
+<meta name="text:Search Placeholder" content="search tags..."/>
+<meta name="text:Home Title" content="home"/>
+<meta name="text:Ask Title" content="ask"/>
+<meta name="text:Archive Title" content="archive"/>
+<meta name="text:Tab Tooltip" content="hello!"/>
+<meta name="text:Link 1 Title" content="link one"/>
+<meta name="text:Link 1 URL" content=""/>
+<meta name="text:Link 2 Title" content="link two"/>
+<meta name="text:Link 2 URL" content=""/>
+<meta name="text:Link 3 Title" content="link three"/>
+<meta name="text:Link 3 URL" content=""/>
+<meta name="text:Link 4 Title" content="link four"/>
+<meta name="text:Link 4 URL" content=""/>
+<meta name="text:Link 5 Title" content="link five"/>
+<meta name="text:Link 5 URL" content=""/>
+<meta name="text:Link 6 Title" content="link six"/>
+<meta name="text:Link 6 URL" content=""/>
+
+<meta name="text:Tab Title" content="hello!"/>
+<meta name="text:Tab Image Tooltip" content=""/>
+<meta name="text:Tab Content" content="hello!"/>
+
+<meta name="if:Search Bar" content="1"/>
+<meta name="if:Small Cursor" content="1"/>
+<meta name="if:Updates" content="1"/>
+<meta name="if:Uppercase Accents" content="1"/>
+<meta name="if:Tags On Hover" content="1"/>
+<meta name="text:Updates Title" content="updates"/>
+<meta name="text:Update 1 Title" content="update one"/>
+<meta name="text:Update 1 Content" content="lorem ipsum dolor sit amet"/>
+<meta name="text:Update 2 Title" content="update two"/>
+<meta name="text:Update 2 Content" content="consectetur adipiscing elit"/>
+<meta name="text:Update 3 Title" content="update three"/>
+<meta name="text:Update 3 Content" content="pellentesque lacus mi"/>
+
+<meta name="if:Invert Tumblr Controls" content="1"/>
+<meta name="if:Grayscale Image in Nightmode" content="1"/>
+<meta name="if:Invert Image in Nightmode" content="1"/>
+
+<!---- scripts ---->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="//code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="//rawgit.com/robinpx/tumblr/master/scripts/flexibleFrames/flexibleFrames.min.js"></script>
+<script src="//static.tumblr.com/rzl30kg/eAxm7a751/jquery.style-my-tooltips.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.1/SmoothScroll.min.js"></script>
+<script src="//static.tumblr.com/0podkko/qWqq8va08/photosets.js"></script>
+<link href="//static.tumblr.com/0podkko/oDSpg7y88/photosets.css" rel="stylesheet">
+<script src ="//static.tumblr.com/fwgzvyf/Oj1o08f6h/shythemes.vr.js"></script>
+<link href="//maxst.icons8.com/vue-static/landings/line-awe
+some/line-awesome/1.3.0/css/line-awesome.min.css" rel="stylesheet">
+<script src="//saestrah.github.io/portfolio/tangerine/tangerine.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="//saestrah.github.io/portfolio/tangerine/tangerine.css"/>
+
+<!---- fonts  ---->
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Display:wght@100;300;400;700;900&family=Bungee&family=Bungee+Shade&family=Codystar:wght@300;400&family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Ewert&family=Fredericka+the+Great&family=Grenze+Gotisch:wght@100;300;400;700&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Kumar+One+Outline&family=La+Belle+Aurore&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Modak&family=Monoton&family=Montserrat+Subrayada:wght@400;700&family=Nerko+One&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Sarina&family=Staatliches&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+<style type="text/css">
+
+/* root variables  */
+ 
+:root {
+    --background:{color:Background};
+    --nightbackground:{color:Night Background};
+    --rgbbackground:{RGBcolor:Background};
+    --rgbnightbackground:{RGBcolor:Night Background};
+    --sidebar:{color:Sidebar};
+    --nightsidebar:{color:Night Sidebar};
+    --tab:{color:Tab};
+    --nighttab:{color:Night Tab};
+    --tabtext:{color:Tab Text};
+    --nighttabtext:{color:Night Tab Text};
+    --buttons:{color:Buttons};
+    --nightbuttons:{color:Night Buttons};
+    --base:{color:Base};
+    --nightbase:{color:Night Base};
+    --text:{color:Text};
+    --nighttext:{color:Night Text};
+    --sidebartext:{color:Sidebar Text};
+    --nightsidebartext:{color:Night Sidebar Text};
+    --links:{color:Links};
+    --nightlinks:{color:Night Links};
+    --accent:{color:Accent};
+    --nightaccent:{color:Night Accent};
+    --title:{color:Title};
+    --nighttitle:{color:Night Title};
+    --subtitle{color:Subtitle};
+    --nightsubtitle{color:Night Subtitle};
+    --borders:{color:Borders};
+    --nightborders:{color:Night Borders};
+    --tooltiptext:{color:Tooltip Text};
+    --nighttooltiptext:{color:Night Tooltip Text};
+    --scrollbar:{color:Scrollbar};
+ 
+    --bodyfont:{select:Body Font};
+    --bodyfontsize:{text:Body Font Size};
+    --bodyfontweight:{text:Body Font Weight};
+    --titlefont:{select:Title Font};
+    --titlefontsize:{text:Title Font Size};
+    --titlefontweight:{text:Title Font Weight};
+}
+
+/*  css  */
+
+{block:ifSidebarImage}
+#sidebarcontent { padding-top:25px; }
+{/block:ifSidebarImage}
+
+{block:ifUppercaseAccents}
+#s-m-t-tooltip, h1, h2, h3, h4, .title, .tabtitle, .updatetitle, a.read_more, .label, .tags, a.more_notes_link { text-transform:uppercase; }
+{/block:ifUppercaseAccents}
+ 
+{block:ifInvertTumblrControls}
+iframe.tmblr-iframe { white-space:nowrap; -webkit-filter: invert(100%); -moz-filter:invert(100%); -o-filter:invert(100%); -ms-filter:invert(100%); filter:invert(100%); }
+{/block:ifInvertTumblrControls}
+
+{block:ifInvertImageinNightmode}
+body.night .sideimg { filter:invert(100%); }
+{/block:ifInvertImageinNightmode}
+ 
+{block:ifGrayscaleImageinNightmode}
+body.night .sideimg { filter:grayscale(100%); }
+{/block:ifGrayscaleImageinNightmode}
+ 
+{block:PermalinkPage}
+.top { opacity:0; }
+section { padding-bottom:50px; }
+.posts { margin-bottom:50px; }
+.tags { opacity:1; }
+{/block:PermalinkPage}
+ 
+{block:ifTagsOnHover}
+.tags { opacity:0; }
+.posts:hover .tags {
+    opacity:1;
+    transition: all 0.5s ease-in-out;
+        -webkit-transition: all 0.5s ease-in-out;
+        -moz-transition: all 0.5s ease-in-out;
+        -o-transition: all 0.5s ease-in-out;
+}
+{/block:ifTagsOnHover}
+
+{block:ifSmallCursor}
+* { cursor:url(https://i.imgur.com/dHusUiR.png),auto }
+body { cursor:url(https://i.imgur.com/dHusUiR.png),auto }
+iframe.tmblr-iframe:hover, a, a:hover, #buttons:hover, ul.linksmenu .linksbutton, sidebar img, tab img, #tabbtns:hover, .ph img { cursor:url(https://i.imgur.com/ZM41vky.png),progress!important; }
+[photoset-layout] div { cursor:url(https://i.imgur.com/ZM41vky.png),progress!important; }
+{/block:ifSmallCursor}
+
+/*  a note from saestrah
+
+to add or reduce the size of the gap between images or gifs in photosets, add the following to the css and change the pixel value to your liking:
+ 
+[photoset-layout] { grid-gap:3px; }
+
+to center the image in your tab panel, add:
+
+tab img { margin:auto; }
+
+or to stretch the image to the full width of the tab, add:
+
+tab img { width:100%; }
+
+if you would like to have your sidebar image both invert and convert to grayscale in nightmode add:
+
+body.night .sideimg { filter:grayscale(100%) invert(100%); }
+
+*/
+
+</style></head><body>
+
+<!--------------------------------  header  ---->
+
+<header>
+<a href="/" class="maintitle" {block:ifTitleTooltip}title="{text:Title Tooltip}"{/block:ifTitleTooltip}>{Title}</a>
+
+<mobilenav>
+<ul id="linksmenu" class="linksmenu">
+<li><div class="linksbutton"><span class="las la-bars"></span></div>
+    <ul class="mobilelinksbox">
+    <li class="mobilelinks">
+        <li><span><a href="https://tumblr.com/follow/{Name}">follow</a></span></li>
+        <li><span><a href="/">home</a></span></li>
+        <li><span><a href="/ask">ask</a></span></li>
+        <li><span><a href="/archive">archive</a></span></li>
+        {block:ifLink1Title}<li><span><a href="{text:Link 1 URL}">{text:Link 1 Title}</a></span></li>{/block:ifLink1Title}
+        {block:ifLink2Title}<li><span><a href="{text:Link 2 URL}">{text:Link 2 Title}</a></span></li>{/block:ifLink2Title}
+        {block:ifLink3Title}<li><span><a href="{text:Link 3 URL}">{text:Link 3 Title}</a></span></li>{/block:ifLink3Title}
+        {block:ifLink4Title}<li><span><a href="{text:Link 4 URL}">{text:Link 4 Title}</a></span></li>{/block:ifLink4Title}
+        {block:ifLink5Title}<li><span><a href="{text:Link 5 URL}">{text:Link 5 Title}</a></span></li>{/block:ifLink5Title}
+        {block:ifLink6Title}<li><span><a href="{text:Link 6 URL}">{text:Link 6 Title}</a></span></li>{/block:ifLink6Title}
+    </li>
+    </ul>
+</li>
+</ul>
+</mobilenav>
+
+</header>
+
+<!--------------------------------  sidebar  ---->
+
+<sidebar>
+<div class="sideimg"><a href="/" {block:ifSidebarImageTooltip}title="{text:Sidebar Image Tooltip}"{/block:ifSidebarImageTooltip}><img src="{image:Sidebar}"/></div>
+
+<div id="sidebarcontent">
+
+<a href="/" class="maintitle" {block:ifTitleTooltip}title="{text:Title Tooltip}"{/block:ifTitleTooltip}>{Title}</a>
+
+<div class="description">{Description}</div>
+
+{block:ifSearchBar}<div class="search-wrapper"><form class="search" action="javascript:return false"><input type="text" class="query" placeholder="{text:Search Placeholder}"></form></div>{/block:ifSearchBar}
+
+</div>
+</sidebar>
+
+<!---- a note from saestrah:
+
+to change the icons, visit https://icons8.com/line-awesome and change "las-la-[something]" to the code for the image you like. not all icons use the same format (e.g. the spotify icon is "lab-la-spotify")  ---->
+
+<tabpanel>
+<a class="homebtn" id="tabbtns" href="/" {block:ifHomeTitle}title="{text:Home Title}"{/block:ifHomeTitle}><span class="las la-home"></span></a>
+<a class="askbtn" id="tabbtns" href="/ask" {block:ifAskTitle}title="{text:Ask Title}"{/block:ifAskTitle}><span class="las la-comment-alt"></span></a>
+<a class="archivebtn" id="tabbtns" href="/archive" {block:ifArchiveTitle}title="{text:Archive Title}"{/block:ifArchiveTitle}><span class="las la-archive"></span></a>
+<a class="tabbtn" id="tabbtns" {block:ifTabTooltip}title="{text:Tab Tooltip}"{/block:ifTabTooltip}><span class="las la-thumbtack"></span></a>
+{block:ifLink1Title}<a class="link1" id="tabbtns" href="{text:Link 1 URL}" title="{text:Link 1 Title}"><span class="las la-globe"></span></a>{/block:ifLink1Title}
+{block:ifLink2Title}<a class="link2" id="tabbtns" href="{text:Link 2 URL}" title="{text:Link 2 Title}"><span class="las la-meteor"></span></a>{/block:ifLink2Title}
+{block:ifLink3Title}<a class="link3" id="tabbtns" href="{text:Link 3 URL}" title="{text:Link 3 Title}"><span class="las la-wind"></span></a>{/block:ifLink3Title}
+{block:ifLink4Title}<a class="link4" id="tabbtns" href="{text:Link 4 URL}" title="{text:Link 4 Title}"><span class="las la-umbrella"></span></a>{/block:ifLink4Title}
+{block:ifLink5Title}<a class="link5" id="tabbtns" href="{text:Link 5 URL}" title="{text:Link 5 Title}"><span class="las la-rainbow"></span></a>{/block:ifLink5Title}
+{block:ifLink6Title}<a class="link6" id="tabbtns" href="{text:Link 6 URL}" title="{text:Link 6 Title}"><span class="las la-snowflake"></span></a>{/block:ifLink6Title}
+</tabpanel>
+
+<!--------------------------------  tab  ---->
+
+<tab>
+<div class="tabimg"><a {block:ifTabImageTooltip}title="{text:Tab Image Tooltip}"{/block:ifTabImageTooltip}><img src="{image:Tab}"/></a></div>
+
+<div id="tabcontent">
+<div class="tabtitle">{text:Tab Title}</div>
+<div class="tabdescription">{text:Tab Content}</div>
+
+{block:ifUpdates}
+{block:ifUpdatesTitle}<div class="updatetitle">{text:Updates Title}</div>{/block:ifUpdatesTitle}
+<div class="description"><b>{text:Update 1 Title}</b>: {text:Update 1 Content}</div>
+<div class="description"><b>{text:Update 2 Title}</b>: {text:Update 2 Content}</div>
+<div class="description"><b>{text:Update 3 Title}</b>: {text:Update 3 Content}</div>
+{/block:ifUpdates}
+</div>
+</tab>
+
+<!--------------------------------  posts  ---->
+ 
+<section id="entries">{block:Posts}
+<article class="posts {block:Caption}captioned{/block:Caption}" post-type="{PostType}">
+ 
+<!----  textposts  ---->
+ 
+{block:Text}
+<div class="post text" id="{PostID}">
+{block:Title}<div class="title">{title}</div>{/block:Title}
+{block:RebloggedFrom}
+    {block:Reblogs}
+    {block:IsActive}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsActive}
+    {block:IsDeactivated}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user deactivated" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsDeactivated}
+    {/block:Reblogs}
+{/block:RebloggedFrom}
+{block:NotReblog}
+    <li class="comment">
+        <div class="tex">{Body}</div>
+    </li>
+{/block:NotReblog}
+</div>
+{/block:Text}
+ 
+<!----  quotes  ---->
+ 
+{block:Quote}
+<div class="post" id="{PostID}">
+<div class="quote">{Quote}</div>
+{block:Source}<div class="source">{Source}</div>{/block:Source}
+</div>
+{/block:Quote}
+ 
+<!----  links  ---->
+ 
+{block:Link}
+<div class="post" id="{PostID}">
+<div class="title"><a href="{URL}">{Name}</a></div>
+{block:Description}
+    {block:NotReblog}
+        <li class="comment">
+            <div class="tex">{Description}</div>
+        </li>
+    {/block:NotReblog}
+{/block:Description}
+{block:RebloggedFrom}
+    {block:Reblogs}
+    {block:IsActive}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsActive}
+    {block:IsDeactivated}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user deactivated" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsDeactivated}
+    {/block:Reblogs}
+{/block:RebloggedFrom}
+</div>
+{/block:Link}
+ 
+<!----  asks  ---->
+ 
+{block:Answer}
+<div class="post" id="{PostID}">
+<div class="question"><span class="asker">{Asker} sent: </span><p>{Question}</div>
+ 
+{block:NotReblog}
+<div class="answer">{Answer}</div>
+{/block:NotReblog}
+ 
+{block:RebloggedFrom}
+{block:Answerer}
+<div class="answer">
+<span class="answerer">{Answerer} replied:</span><span class="tex">{Answer}</span>
+</div>
+{/block:Answerer}
+    {block:Reblogs}
+    {block:IsActive}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsActive}
+    {block:IsDeactivated}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user deactivated" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsDeactivated}
+    {/block:Reblogs}
+{/block:RebloggedFrom}
+</div>
+{/block:Answer}
+ 
+<!----  chat  ---->
+ 
+{block:Chat}
+<div class="post" id="{PostID}">
+{block:Title}<div id="title">{Title}</div>{/block:Title}
+<ol class="chat">
+    {block:Lines}
+        <li class="l {Alt}">
+            {block:Label}<span class="label">{Label}</span>{/block:Label}             {Line}
+        </li>
+    {/block:Lines}
+</ol>
+</div>
+{/block:Chat}
+ 
+<!----  photos and photosets  ---->
+ 
+<div class="post" id="{PostID}"><div class="ph">
+ 
+{block:Photo}{linkopentag}<img src="{PhotoURL-HighRes}" alt="{PhotoAlt}"/>{LinkCloseTag}{/block:Photo}
+ 
+{block:Photoset}
+<div class="photoset-grid" photoset-layout="{PhotosetLayout}">{block:Photos}<div data-width="{PhotoWidth-HighRes}" data-height="{PhotoHeight-HighRes}" data-lowres="{PhotoURL-500}" data-highres="{PhotoURL-HighRes}" onclick="lightbox(this)"><img class="ph" src="{PhotoURL-HighRes}" /></div>{/block:Photos}</div></div>
+{/block:Photoset}
+ 
+<!----  video  ---->
+ 
+{block:Video}<div class="post video" id="{PostID}">{VideoEmbed-500}</div>{/block:Video}
+ 
+<!----  audio  ---->
+ 
+{block:Audio}
+<div class="post" id="{PostID}">
+{block:AudioPlayer}
+<div class="hold">
+<div class="player"><div class="play">{AudioPlayerBlack}</div></div>
+<div class="audio_info">
+    {block:TrackName}<span class="track">{TrackName}</span>{/block:TrackName}
+    {block:Artist}<span class="artist">{Artist}</span>{/block:Artist}
+</div>
+</div>
+{/block:AudioPlayer}
+</div>
+{/block:Audio}
+ 
+<!----  captions and reblogs  ---->
+ 
+{block:Caption}
+    {block:Reblogs}
+    {block:IsActive}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsActive}
+    {block:IsDeactivated}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user deactivated" target="_blank">{Username}</a>
+            <div class="tex">{Body}</div>
+        </li>
+    {/block:IsDeactivated}
+    {/block:Reblogs}
+    {block:NotReblog}
+        <li class="comment">
+            <a {block:HasPermalink}href="{Permalink}"{/block:HasPermalink} class="user" target="_blank">{Name}</a>
+            <div class="tex">{Caption}</div>
+        </li>
+    {/block:NotReblog}
+{/block:Caption}
+ 
+</div>
+ 
+<!----  post info  ---->
+ 
+{block:Date}
+<hr>
+ 
+<div class="when">
+    <span><a href="{Permalink}">{ShortMonth} {DayOfMonthWithZero} {Year}</a>{block:Notecount} <span class="notecount">{NoteCountWithLabel}</span></span>{/block:Notecount}</span>
+ 
+<div style="float:right">
+<span><a href="{ReblogURL}" target="_blank" class="reblog">reblog</a><span><a class="like-b" href="#">{LikeButton}<span class="b">like</span></a></span></div>
+ 
+</div>
+ 
+{block:HasTags}<div class="tags">{block:Tags}<a class="tag" href="{TagURL}">{Tag}</a>{/block:Tags}</div>{/block:HasTags}
+ 
+{/block:Date}
+ 
+</article>
+ 
+{block:PostNotes}
+{block:RebloggedFrom}
+    <div class="via">via: <a href="{ReblogParentURL}">{ReblogParentName}</a>{block:ContentSource} &nbsp&mdash;&nbsp source: <a href="{ReblogRootURL}">{ReblogRootName}</a>{/block:ContentSource}</div>
+{/block:RebloggedFrom}
+ 
+{PostNotes}
+ 
+</article>
+ 
+{/block:PostNotes}
+{/block:Posts}
+ 
+<!----  pagination  ---->
+ 
+<footer>
+{block:PreviousPage}
+<span><a class="prev" href="{PreviousPage}" title="previous page"><span class="las la-arrow-left"></span></a></span>
+{/block:PreviousPage}
+{block:NextPage}
+<span><a class="next" href="{NextPage}" title="next page"><span class="las la-arrow-right"></span></a></span>
+{/block:NextPage}
+</footer>
+ 
+</section>
+
+<!----  buttons  ---->
+
+<a id="buttons" class="cc"><span class="las la-bars"></span></a>
+<a id="buttons" class="nightbtn" title="night mode"><span class="las la-moon"></span></a>
+<a id="buttons" class="daybtn" title="day mode" hidden="hidden"><span class="las la-sun"></span></a>
+<a id="buttons" class="bfontbtn" title="change font size">Aa</a>
+<a id="buttons" class="sfontbtn" title="change font size" hidden="hidden">Aa</a>
+<a id="buttons" class="credit" href="https://saestrah.tumblr.com" title="saestrah themes" target="_blank"><span class="las la-hat-cowboy"></span></a>
+<a id="buttons" class="top" href="/" title="back to top"><span class="las la-arrow-up"></span></a>
+
+<!--------------------------------  scripts  ---->
+ 
+<!----  search bar by @shythemes  ---->
+ 
+<script>
+    $(document).ready(function(){
+    $(".search").submit(function(event){
+    var value = $("input:first").val();
+    location.replace("https://{Name}.tumblr.com/tagged/" + value);
+    });
+    });
+</script>
+ 
+<!----  scroll to top by paul underwood  ---->
+ 
+<script>
+$(document).ready(function(){
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $(".top").fadeIn();
+        } else {
+            $(".top").fadeOut();
+        }
+    });
+ 
+    $(".top").click(function(){
+        $("html, body").animate({scrollTop : 0},800);
+        return false;
+    });
+ 
+});
+</script>
+ 
+<!----  audio player by @shythemes  ---->
+ 
+<script>
+    $(document).ready(function(){
+        $("iframe.tumblr_audio_player").load( function() {
+            $("iframe.tumblr_audio_player").contents().find("head").append($("<style type="text/css"> .audio-player{background:transparent;!important}</style>"));
+        });
+    });
+</script>
+ 
+<!----  photosets by @annasthms and @eggdesign  ---->
+ 
+<script>
+function gatherData(images, arr) {
+  for (let i = 0; i < images.length; i++) {
+    let currentData = {
+      "width": images[i].getAttribute("data-width"),
+      "height": images[i].getAttribute("data-height"),
+      "low_res": images[i].getAttribute("data-lowres"),
+      "high_res": images[i].getAttribute("data-highres")
+    };
+    arr.push(currentData);
+  }
+}
+function getIndex(elem) {
+  let i = 0;
+  while( (elem = elem.previousElementSibling) != null ) i++;
+  return i;
+}
+function lightbox(elem) {
+  let currentPhotoset = elem.parentNode;
+  let photosetPhotos = currentPhotoset.getElementsByTagName("div");
+  let data = [];
+  gatherData(photosetPhotos, data);
+  Tumblr.Lightbox.init(data, getIndex(elem) + 1);
+}
+$(document).ready(function(){
+    undoPhotoset({
+        "posts":".text",
+        "text class":"",
+        "photoset class":"ph"
+    },false);
+});
+</script>
+ 
+<!----  npf images readjustment by @glenthemes  ---->
+ 
+<link href="//dl.dropbox.com/s/bnoj86mka0bkplb/npf-override.css" rel="stylesheet">
+<script src="//dl.dropbox.com/s/vwrm94pcg4c9e71/npf-evenize.js"></script>
+<script src="//dl.dropbox.com/s/aqo7pinjzfub4tn/npf-legacy.js"></script>
+ 
+<style type="text/css">
+:root {
+    --NPF-Image-Spacing:4px;
+    --NPF-Bottom-Gap-From-Captions:0;
+}
+</style>
+ 
+<!---- flexible frames by @nouvae  ---->
+ 
+<script>
+$(document).ready(function(){
+    function flexFrame() {
+    $("entries").each(function() {
+        $(this).find("iframe").wrap("<div class="iframe-flex"></div>");
+        flexibleFrames($(".iframe-flex"));
+    });
+    flexibleFrames($(".video"));}
+    $(document).ready(flexFrame);
+});
+</script>
+ 
+<!---- notecount shortener by @shythemes  ---->
+ 
+<script>
+    var $container = $(".when");
+   $container.find(".notecount").each(function(){
+       var n = $(this).html().split(" ")[0].replace(/,/g, "");
+       if (n > 999) {
+           n = Math.floor(n / 100) / 10;
+           $(this).text(n + "k notes");
+       }
+   });
+</script>
+ 
+<!----  tooltips by malihu  ---->
+ 
+<script type="text/javascript">
+(function($){
+    $(document).ready(function(){
+        $("[title]").style_my_tooltips({
+            tip_follows_cursor:true,
+            tip_delay_time:200,
+            tip_fade_speed:300
+        });
+    });
+})(jQuery);
+</script>
+ 
+<!--------------------------------  end of scripts  ---->
+
+<body>
+</html>
