@@ -1,0 +1,1207 @@
+<!----
+ 
+    tomorrow project page · by saestrah · april 2021
+        
+        · base code by sorrism
+        · scroll to top by paul underwood
+        · smoothscroll by balazs galambosi
+        · nightmode by eggdesign
+        · icons by line-awesome
+        · tooltips by malihu
+        
+        || terms of use
+        
+        · don't remove credit
+        · don't repost or redistribute
+        · don't take parts of the code and use as your own
+        
+        || notes
+        
+        · for customisation hints, search for "a note from saestrah"
+
+---->
+
+<!DOCTYPE html>
+<head>
+
+<!----  a note from saestrah:  you can add a browser tab title for your page here by adding the following below "<head>"
+
+<title>YOUR TITLE HERE</title>
+
+---->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="{Favicon}">
+<link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+<!---- scripts ---->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<script src="//code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="//rawgit.com/robinpx/tumblr/master/scripts/flexibleFrames/flexibleFrames.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.1/SmoothScroll.min.js"></script>
+<script src="//static.tumblr.com/rzl30kg/eAxm7a751/jquery.style-my-tooltips.js"></script>
+<script src="//static.tumblr.com/0podkko/qWqq8va08/photosets.js"></script>
+<link href="//static.tumblr.com/0podkko/oDSpg7y88/photosets.css" rel="stylesheet">
+<script src ="//static.tumblr.com/fwgzvyf/Oj1o08f6h/shythemes.vr.js"></script>
+<link href="//maxst.icons8.com/vue-static/landings/line-awe
+some/line-awesome/1.3.0/css/line-awesome.min.css" rel="stylesheet">
+<script src="//saestrah.github.io/portfolio/tomorrow/projectpage.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="//saestrah.github.io/portfolio/tomorrow/projectpage.css"/>
+
+<!---- fonts  ---->
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Display:wght@100;300;400;700;900&family=Bungee&family=Bungee+Shade&family=Codystar:wght@300;400&family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Ewert&family=Fredericka+the+Great&family=Grenze+Gotisch:wght@100;300;400;700&family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Kumar+One+Outline&family=La+Belle+Aurore&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Modak&family=Monoton&family=Montserrat+Subrayada:wght@400;700&family=Nerko+One&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&family=Sarina&family=Staatliches&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+<style type="text/css">
+
+/*  root variables
+
+a note from saestrah: this is where you edit the colours of your projects page. colours will need hex codes, and fonts will be limited to those preinstalled for tomorrow's main theme, which are as follows:
+ 
+    Big Shoulders Inline Display
+    Bungee
+    Bungee Shade
+    Codystar
+    EB Garamond
+    Ewert
+    Fredericka the Great
+    Grenze Gotisch
+    Inria Sans
+    Inria Serif
+    Karla
+    Kumar One Outline
+    La Belle Aurore
+    Lato
+    Lora
+    Modak
+    Monoton
+    Montserrat Subrayada
+    Nerko One
+    Playfair Display
+    Roboto Condensed
+    Roboto Slab
+    Sarina
+    Staatliches
+    UnifrakturCook
+
+*/
+
+:root {
+    --background:#c3cebc;
+    --nightbackground:#292f36;
+    --base:#a0b096;
+    --nightbase:#21262c;
+    --text:#656565;
+    --nighttext:#cccccc;
+    --link:#000000;
+    --nightlink:#ffffff;
+    --accent:#ffffff;
+    --nightaccent:#b3f02e;
+    --title:#000000;
+    --nighttitle:#ffffff;
+    --borders:#7ca2a2;
+    --nightborders:#455e7b;
+    --tooltiptext:#000000;
+    --nighttooltiptext:#000000;
+ 
+    --bodyfont:"Grenze Gotisch";
+    --bodyfontsize:14px;
+    --bodyfontweight:400;
+    --titlefont:"Nerko One";
+    --titlefontsize:32px;
+    --titlefontweight:400;
+    
+    --contentblocksize:500px;  /*  a note from saestrah:  for continuity with tomorrow's main theme, this should be the same as the size you selected for your post width  */
+}
+
+/*  a note from saestrah:
+
+if you have short project titles and want the sidebar to take up less space, add the following to the css above this note and adjust the values to your liking (vw means viewport-width, i.e. the percentage of your browser width). leftwrap is for the sidebar, and rightwrap is for the project page content. the viewport value should add up to 100 in total.
+
+    .leftwrap { width:40vw; }
+    .rightwrap { width:60vw; }
+
+if you want uppercase accents on this projects page, add:
+
+    #s-m-t-tooltip, h1, h2, h3, h4, .tabtitle, .title, .subtitle, .source { text-transform:uppercase; }
+
+if you want to invert the tumblr controls (make them black instead of the default white) add:
+
+    iframe.tmblr-iframe { white-space:nowrap; -webkit-filter: invert(100%); -moz-filter:invert(100%); -o-filter:invert(100%); -ms-filter:invert(100%); filter:invert(100%); }
+
+if you would like to grayscale your cover images (make them black and white) in nightmode add:
+
+    body.night cover img { filter:grayscale(100%); }
+
+or to invert it:
+
+    body.night cover img { filter:invert(100%); }
+ 
+if you would like to both invert and grayscale in nightmode add:
+
+    body.night cover img { filter:grayscale(100%) invert(100%); }
+
+if you would like to have a small cursor rather than your browser's default, add:
+
+    * { cursor:url(https://i.imgur.com/dHusUiR.png),auto }
+    body { cursor:url(https://i.imgur.com/dHusUiR.png),auto }
+    iframe.tmblr-iframe:hover, a, a:hover { cursor:url(https://i.imgur.com/ZM41vky.png),progress!important; }
+
+*/
+
+</style>
+</head>
+<body>
+
+<!--------------------------------  html  ---->
+
+<iconlinks>
+
+<a class="home" id="iconlinks" href="/" title="home"><span class="las la-home"></span></a>
+
+<a class="ask" id="iconlinks" href="/ask" title="ask"><span class="las la-comment-alt"></span></a>
+
+<a class="archive" id="iconlinks" href="/archive" title="archive"><span class="las la-archive"></span></a>
+
+<a class="random" id="iconlinks" href="/random" title="shuffle"><span class="las la-map-marker-alt"></span></a>
+
+<!---- a note from saestrah:
+
+to change the icons, visit https://icons8.com/line-awesome and change "las-la-[something]" to the code for the image you like. not all icons use the same format (e.g. the spotify icon is "lab-la-spotify")
+
+if you had the custom icons as links rather than sidebar tabs, you can add them back by adding the following to the css:
+
+    .icon1 { left:calc(25% - 6px); }
+    .icon2 { left:calc(30% - 6px); }
+    .icon3 { left:calc(35% - 6px); }
+    .icon4 { left:calc(40% - 6px); }
+
+and the following to the html above:
+
+    <a class="icon1" id="iconlinks" href="CUSTOM ICON 1 URL" title="CUSTOM ICON 1 TOOLTIP"><span class="las la-globe"></span></a>
+
+    <a class="icon2" id="iconlinks" href="CUSTOM ICON 2 URL" title="CUSTOM ICON 2 TOOLTIP"><span class="las la-wind"></span></a>
+
+    <a class="icon3" id="iconlinks" href="CUSTOM ICON 3 URL" title="CUSTOM ICON 3 TOOLTIP"><span class="las la-meteor"></span></a>
+    
+    <a class="icon4" id="iconlinks" href="CUSTOM ICON 4 URL" title="CUSTOM ICON 4 TOOLTIP"><span class="las la-seedling"></span></a>
+
+---->
+
+</iconlinks>
+
+<!--------------------------------  leftside  ---->
+
+<div class="wrap">
+<div class="leftwrap">
+
+<!----
+
+a note from saestrah:  this is the sidebar which contains the titles of all your projects. when a user clicks on one of these titles, they can then view the content of that project
+
+the sidebar titles are simply means of categorising your projects (such as completed works versus works in progress), and are entirely optional
+
+you can add as many projects or sidebar titles as you like, just remember to add a tabX id for the projects
+
+---->
+
+<sidebar>
+<span id="tabs">
+    <div class="tabtitle">sidebar title one</div>
+        <li><a id="tab1">project title one</a></li>
+        <li><a id="tab2">project title two</a></li>
+        <li><a id="tab3">project title three</a></li>
+    <div class="tabtitle">sidebar title two</div>
+        <li><a id="tab4">project title four</a></li>
+        <li><a id="tab5">project title five</a></li>
+        <li><a id="tab6">project title six</a></li>
+</span>
+</sidebar>
+
+</div>
+
+<!--------------------------------  rightside  ---->
+
+<div class="rightwrap">
+<section>
+
+<!----  tab one
+
+a note from saestrah:  everything within a tab is one single project
+
+---->
+
+<div class="container" id="tab1C">
+
+    <div class="title">project one title</div>
+    <div class="prjblock">
+    
+    <cover>
+    <div class="cover"><img src="https://i.imgur.com/zOlzpXa.jpg"/></div>
+    
+    <!----  a note from saestrah:  remember to change the image url to one of your own!  ---->
+    
+    <div id="coverdescription">cover description</div>
+    
+    </cover>
+    </div>
+    
+    <!----  statistics  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">statistics</div>
+
+    <!----  a note from saestrah:  this is a good place to add information like your project's genre and wordcount  ---->
+
+    <div class="prjcontent stats">
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+        <li><b>statistic</b>stat four</li>
+        <li><b>statistic</b>stat five</li>
+        <li><b>statistic</b>stat six</li>
+    </div>
+    
+    </div>
+
+    <!----  summary  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">summary</div>
+
+    <div class="prjcontent summary">
+    
+    Your summary goes here.
+    
+    </div>
+    </div>
+
+    <!----  warnings  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">content warnings</div>
+
+    <div class="prjcontent warnings">
+        <li>warning one</li>
+        <li>warning two</li>
+        <li>warning three</li>
+        <li>warning four</li>
+    </div>
+
+    </div>
+
+    <!----  links  ---->
+    
+    <div class="prjblock">
+    <div class="subtitle">links</div>
+
+    <div class="prjcontent links">
+        <li><a href="LINK URL">link one</a></li>
+        <li><a href="LINK URL">link two</a></li>
+        <li><a href="LINK URL">link three</a></li>
+        <li><a href="LINK URL">link four</a></li>
+        <li><a href="LINK URL">link five</a></li>
+        <li><a href="LINK URL">link six</a></li>
+    </div>
+
+    </div>
+
+    <!----  characters  ---->
+    
+    <div class="prjblock">
+    <div class="subtitle">characters</div>
+    
+    <div class="prjcontent characters">
+    
+        <!----- character one ----->
+                
+        <div class="character">
+        <img src="https://i.imgur.com/rjj8mpC.jpg">
+        <div class="subtitle">character a</div>
+        
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+            
+        <p>You can add a bio for your character here. The text will be justified and you can add as many paragraphs as you like.</p>
+        
+        </div>
+        
+        <!----- character two ----->
+                
+        <div class="character">
+        <img src="https://i.imgur.com/qCdqFNU.jpg">
+        <div class="subtitle">character b</div>
+        
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+            
+        <p>You can add a bio for your character here. The text will be justified and you can add as many paragraphs as you like.</p>
+        
+        </div>
+    
+    </div>
+    
+    </div>
+    
+    <!----  relationships  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">relationships</div>
+
+    <div class="prjcontent relationships">
+        <li>
+        <div class="relationship">Character A &amp; Character B</div>
+        <div class="subtitle">romantic</div>
+        </li>
+        
+        <li>
+        <div class="relationship">Character C &amp; Character D</div>
+        <div class="subtitle">platonic</div>
+        </li>
+    </div>
+    
+    </div>
+
+    <!----  quote  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">quote</div>
+
+    <div class="quote">
+    
+    You can add a quote or a snippet of your project here.
+
+    </div>
+
+    <div class="source">quote source</div>
+    
+    </div>
+
+</div>
+
+<!----  tab two  ---->
+
+<div class="container" id="tab2C">
+
+    <div class="title">project two title</div>
+    <div class="prjblock">
+    
+    <cover>
+    <div class="cover"><img src="https://i.imgur.com/29sB06R.jpg"/></div>
+    
+    <!----  a note from saestrah:  remember to change the image url to one of your own!  ---->
+    
+    <div id="coverdescription">cover description</div>
+    
+    </cover>
+    </div>
+    
+    <!----  statistics  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">statistics</div>
+
+    <!----  a note from saestrah:  this is a good place to add information like your project's genre and wordcount  ---->
+
+    <div class="prjcontent stats">
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+        <li><b>statistic</b>stat four</li>
+        <li><b>statistic</b>stat five</li>
+        <li><b>statistic</b>stat six</li>
+    </div>
+    
+    </div>
+
+    <!----  summary  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">summary</div>
+
+    <div class="prjcontent summary">
+    
+    Your summary goes here.
+    
+    </div>
+    </div>
+
+    <!----  warnings  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">content warnings</div>
+
+    <div class="prjcontent warnings">
+        <li>warning one</li>
+        <li>warning two</li>
+        <li>warning three</li>
+        <li>warning four</li>
+    </div>
+
+    </div>
+
+    <!----  links  ---->
+    
+    <div class="prjblock">
+    <div class="subtitle">links</div>
+
+    <div class="prjcontent links">
+        <li><a href="LINK URL">link one</a></li>
+        <li><a href="LINK URL">link two</a></li>
+        <li><a href="LINK URL">link three</a></li>
+        <li><a href="LINK URL">link four</a></li>
+        <li><a href="LINK URL">link five</a></li>
+        <li><a href="LINK URL">link six</a></li>
+    </div>
+
+    </div>
+
+    <!----  characters  ---->
+    
+    <div class="prjblock">
+    <div class="subtitle">characters</div>
+    
+    <div class="prjcontent characters">
+    
+        <!----- character one ----->
+                
+        <div class="character">
+        <img src="https://i.imgur.com/rjj8mpC.jpg">
+        <div class="subtitle">character a</div>
+        
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+            
+        <p>You can add a bio for your character here. The text will be justified and you can add as many paragraphs as you like.</p>
+        
+        </div>
+        
+        <!----- character two ----->
+                
+        <div class="character">
+        <img src="https://i.imgur.com/qCdqFNU.jpg">
+        <div class="subtitle">character b</div>
+        
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+            
+        <p>You can add a bio for your character here. The text will be justified and you can add as many paragraphs as you like.</p>
+        
+        </div>
+    
+    </div>
+    
+    </div>
+    
+    <!----  relationships  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">relationships</div>
+
+    <div class="prjcontent relationships">
+        <li>
+        <div class="relationship">Character A &amp; Character B</div>
+        <div class="subtitle">romantic</div>
+        </li>
+        
+        <li>
+        <div class="relationship">Character C &amp; Character D</div>
+        <div class="subtitle">platonic</div>
+        </li>
+    </div>
+    
+    </div>
+
+    <!----  quote  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">quote</div>
+
+    <div class="quote">
+    
+    You can add a quote or a snippet of your project here.
+
+    </div>
+
+    <div class="source">quote source</div>
+    
+    </div>
+
+</div>
+
+<!----  tab three  ---->
+
+<div class="container" id="tab3C">
+
+    <div class="title">project three title</div>
+    <div class="prjblock">
+    
+    <cover>
+    <div class="cover"><img src="https://i.imgur.com/4bLhy43.jpg"/></div>
+    
+    <!----  a note from saestrah:  remember to change the image url to one of your own!  ---->
+    
+    <div id="coverdescription">cover description</div>
+    
+    </cover>
+    </div>
+    
+    <!----  statistics  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">statistics</div>
+
+    <!----  a note from saestrah:  this is a good place to add information like your project's genre and wordcount  ---->
+
+    <div class="prjcontent stats">
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+        <li><b>statistic</b>stat four</li>
+        <li><b>statistic</b>stat five</li>
+        <li><b>statistic</b>stat six</li>
+    </div>
+    
+    </div>
+
+    <!----  summary  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">summary</div>
+
+    <div class="prjcontent summary">
+    
+    Your summary goes here.
+    
+    </div>
+    </div>
+
+    <!----  warnings  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">content warnings</div>
+
+    <div class="prjcontent warnings">
+        <li>warning one</li>
+        <li>warning two</li>
+        <li>warning three</li>
+        <li>warning four</li>
+    </div>
+
+    </div>
+
+    <!----  links  ---->
+    
+    <div class="prjblock">
+    <div class="subtitle">links</div>
+
+    <div class="prjcontent links">
+        <li><a href="LINK URL">link one</a></li>
+        <li><a href="LINK URL">link two</a></li>
+        <li><a href="LINK URL">link three</a></li>
+        <li><a href="LINK URL">link four</a></li>
+        <li><a href="LINK URL">link five</a></li>
+        <li><a href="LINK URL">link six</a></li>
+    </div>
+
+    </div>
+
+    <!----  characters  ---->
+    
+    <div class="prjblock">
+    <div class="subtitle">characters</div>
+    
+    <div class="prjcontent characters">
+    
+        <!----- character one ----->
+                
+        <div class="character">
+        <img src="https://i.imgur.com/rjj8mpC.jpg">
+        <div class="subtitle">character a</div>
+        
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+            
+        <p>You can add a bio for your character here. The text will be justified and you can add as many paragraphs as you like.</p>
+        
+        </div>
+        
+        <!----- character two ----->
+                
+        <div class="character">
+        <img src="https://i.imgur.com/qCdqFNU.jpg">
+        <div class="subtitle">character b</div>
+        
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+            
+        <p>You can add a bio for your character here. The text will be justified and you can add as many paragraphs as you like.</p>
+        
+        </div>
+    
+    </div>
+    
+    </div>
+    
+    <!----  relationships  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">relationships</div>
+
+    <div class="prjcontent relationships">
+        <li>
+        <div class="relationship">Character A &amp; Character B</div>
+        <div class="subtitle">romantic</div>
+        </li>
+        
+        <li>
+        <div class="relationship">Character C &amp; Character D</div>
+        <div class="subtitle">platonic</div>
+        </li>
+    </div>
+    
+    </div>
+
+    <!----  quote  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">quote</div>
+
+    <div class="quote">
+    
+    You can add a quote or a snippet of your project here.
+
+    </div>
+
+    <div class="source">quote source</div>
+    
+    </div>
+
+</div>
+
+<!----  tab four  ---->
+
+<div class="container" id="tab4C">
+
+    <div class="title">project four title</div>
+    <div class="prjblock">
+    
+    <cover>
+    <div class="cover"><img src="https://i.imgur.com/yZiFmvT.jpg"/></div>
+    
+    <!----  a note from saestrah:  remember to change the image url to one of your own!  ---->
+    
+    <div id="coverdescription">cover description</div>
+    
+    </cover>
+    </div>
+    
+    <!----  statistics  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">statistics</div>
+
+    <!----  a note from saestrah:  this is a good place to add information like your project's genre and wordcount  ---->
+
+    <div class="prjcontent stats">
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+        <li><b>statistic</b>stat four</li>
+        <li><b>statistic</b>stat five</li>
+        <li><b>statistic</b>stat six</li>
+    </div>
+    
+    </div>
+
+    <!----  summary  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">summary</div>
+
+    <div class="prjcontent summary">
+    
+    Your summary goes here.
+    
+    </div>
+    </div>
+
+    <!----  warnings  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">content warnings</div>
+
+    <div class="prjcontent warnings">
+        <li>warning one</li>
+        <li>warning two</li>
+        <li>warning three</li>
+        <li>warning four</li>
+    </div>
+
+    </div>
+
+    <!----  links  ---->
+    
+    <div class="prjblock">
+    <div class="subtitle">links</div>
+
+    <div class="prjcontent links">
+        <li><a href="LINK URL">link one</a></li>
+        <li><a href="LINK URL">link two</a></li>
+        <li><a href="LINK URL">link three</a></li>
+        <li><a href="LINK URL">link four</a></li>
+        <li><a href="LINK URL">link five</a></li>
+        <li><a href="LINK URL">link six</a></li>
+    </div>
+
+    </div>
+
+    <!----  characters  ---->
+    
+    <div class="prjblock">
+    <div class="subtitle">characters</div>
+    
+    <div class="prjcontent characters">
+    
+        <!----- character one ----->
+                
+        <div class="character">
+        <img src="https://i.imgur.com/rjj8mpC.jpg">
+        <div class="subtitle">character a</div>
+        
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+            
+        <p>You can add a bio for your character here. The text will be justified and you can add as many paragraphs as you like.</p>
+        
+        </div>
+        
+        <!----- character two ----->
+                
+        <div class="character">
+        <img src="https://i.imgur.com/qCdqFNU.jpg">
+        <div class="subtitle">character b</div>
+        
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+            
+        <p>You can add a bio for your character here. The text will be justified and you can add as many paragraphs as you like.</p>
+        
+        </div>
+    
+    </div>
+    
+    </div>
+    
+    <!----  relationships  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">relationships</div>
+
+    <div class="prjcontent relationships">
+        <li>
+        <div class="relationship">Character A &amp; Character B</div>
+        <div class="subtitle">romantic</div>
+        </li>
+        
+        <li>
+        <div class="relationship">Character C &amp; Character D</div>
+        <div class="subtitle">platonic</div>
+        </li>
+    </div>
+    
+    </div>
+
+    <!----  quote  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">quote</div>
+
+    <div class="quote">
+    
+    You can add a quote or a snippet of your project here.
+
+    </div>
+
+    <div class="source">quote source</div>
+    
+    </div>
+
+</div>
+
+<!----  tab five  ---->
+
+<div class="container" id="tab5C">
+
+    <div class="title">project five title</div>
+    <div class="prjblock">
+    
+    <cover>
+    <div class="cover"><img src="https://i.imgur.com/C64N6SC.jpg"/></div>
+    
+    <!----  a note from saestrah:  remember to change the image url to one of your own!  ---->
+    
+    <div id="coverdescription">cover description</div>
+    
+    </cover>
+    </div>
+    
+    <!----  statistics  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">statistics</div>
+
+    <!----  a note from saestrah:  this is a good place to add information like your project's genre and wordcount  ---->
+
+    <div class="prjcontent stats">
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+        <li><b>statistic</b>stat four</li>
+        <li><b>statistic</b>stat five</li>
+        <li><b>statistic</b>stat six</li>
+    </div>
+    
+    </div>
+
+    <!----  summary  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">summary</div>
+
+    <div class="prjcontent summary">
+    
+    Your summary goes here.
+    
+    </div>
+    </div>
+
+    <!----  warnings  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">content warnings</div>
+
+    <div class="prjcontent warnings">
+        <li>warning one</li>
+        <li>warning two</li>
+        <li>warning three</li>
+        <li>warning four</li>
+    </div>
+
+    </div>
+
+    <!----  links  ---->
+    
+    <div class="prjblock">
+    <div class="subtitle">links</div>
+
+    <div class="prjcontent links">
+        <li><a href="LINK URL">link one</a></li>
+        <li><a href="LINK URL">link two</a></li>
+        <li><a href="LINK URL">link three</a></li>
+        <li><a href="LINK URL">link four</a></li>
+        <li><a href="LINK URL">link five</a></li>
+        <li><a href="LINK URL">link six</a></li>
+    </div>
+
+    </div>
+
+    <!----  characters  ---->
+    
+    <div class="prjblock">
+    <div class="subtitle">characters</div>
+    
+    <div class="prjcontent characters">
+    
+        <!----- character one ----->
+                
+        <div class="character">
+        <img src="https://i.imgur.com/rjj8mpC.jpg">
+        <div class="subtitle">character a</div>
+        
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+            
+        <p>You can add a bio for your character here. The text will be justified and you can add as many paragraphs as you like.</p>
+        
+        </div>
+        
+        <!----- character two ----->
+                
+        <div class="character">
+        <img src="https://i.imgur.com/qCdqFNU.jpg">
+        <div class="subtitle">character b</div>
+        
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+            
+        <p>You can add a bio for your character here. The text will be justified and you can add as many paragraphs as you like.</p>
+        
+        </div>
+    
+    </div>
+    
+    </div>
+    
+    <!----  relationships  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">relationships</div>
+
+    <div class="prjcontent relationships">
+        <li>
+        <div class="relationship">Character A &amp; Character B</div>
+        <div class="subtitle">romantic</div>
+        </li>
+        
+        <li>
+        <div class="relationship">Character C &amp; Character D</div>
+        <div class="subtitle">platonic</div>
+        </li>
+    </div>
+    
+    </div>
+
+    <!----  quote  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">quote</div>
+
+    <div class="quote">
+    
+    You can add a quote or a snippet of your project here.
+
+    </div>
+
+    <div class="source">quote source</div>
+    
+    </div>
+
+</div>
+
+<!----  tab six  ---->
+
+<div class="container" id="tab6C">
+
+    <div class="title">project six title</div>
+    <div class="prjblock">
+    
+    <cover>
+    <div class="cover"><img src="https://i.imgur.com/7JCPhCs.jpg"/></div>
+    
+    <!----  a note from saestrah:  remember to change the image url to one of your own!  ---->
+    
+    <div id="coverdescription">cover description</div>
+    
+    </cover>
+    </div>
+    
+    <!----  statistics  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">statistics</div>
+
+    <!----  a note from saestrah:  this is a good place to add information like your project's genre and wordcount  ---->
+
+    <div class="prjcontent stats">
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+        <li><b>statistic</b>stat four</li>
+        <li><b>statistic</b>stat five</li>
+        <li><b>statistic</b>stat six</li>
+    </div>
+    
+    </div>
+
+    <!----  summary  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">summary</div>
+
+    <div class="prjcontent summary">
+    
+    Your summary goes here.
+    
+    </div>
+    </div>
+
+    <!----  warnings  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">content warnings</div>
+
+    <div class="prjcontent warnings">
+        <li>warning one</li>
+        <li>warning two</li>
+        <li>warning three</li>
+        <li>warning four</li>
+    </div>
+
+    </div>
+
+    <!----  links  ---->
+    
+    <div class="prjblock">
+    <div class="subtitle">links</div>
+
+    <div class="prjcontent links">
+        <li><a href="LINK URL">link one</a></li>
+        <li><a href="LINK URL">link two</a></li>
+        <li><a href="LINK URL">link three</a></li>
+        <li><a href="LINK URL">link four</a></li>
+        <li><a href="LINK URL">link five</a></li>
+        <li><a href="LINK URL">link six</a></li>
+    </div>
+
+    </div>
+
+    <!----  characters  ---->
+    
+    <div class="prjblock">
+    <div class="subtitle">characters</div>
+    
+    <div class="prjcontent characters">
+    
+        <!----- character one ----->
+                
+        <div class="character">
+        <img src="https://i.imgur.com/rjj8mpC.jpg">
+        <div class="subtitle">character a</div>
+        
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+            
+        <p>You can add a bio for your character here. The text will be justified and you can add as many paragraphs as you like.</p>
+        
+        </div>
+        
+        <!----- character two ----->
+                
+        <div class="character">
+        <img src="https://i.imgur.com/qCdqFNU.jpg">
+        <div class="subtitle">character b</div>
+        
+        <li><b>statistic</b>stat one</li>
+        <li><b>statistic</b>stat two</li>
+        <li><b>statistic</b>stat three</li>
+            
+        <p>You can add a bio for your character here. The text will be justified and you can add as many paragraphs as you like.</p>
+        
+        </div>
+    
+    </div>
+    
+    </div>
+    
+    <!----  relationships  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">relationships</div>
+
+    <div class="prjcontent relationships">
+        <li>
+        <div class="relationship">Character A &amp; Character B</div>
+        <div class="subtitle">romantic</div>
+        </li>
+        
+        <li>
+        <div class="relationship">Character C &amp; Character D</div>
+        <div class="subtitle">platonic</div>
+        </li>
+    </div>
+    
+    </div>
+
+    <!----  quote  ---->
+
+    <div class="prjblock">
+    <div class="subtitle">quote</div>
+
+    <div class="quote">
+    
+    You can add a quote or a snippet of your project here.
+
+    </div>
+
+    <div class="source">quote source</div>
+    
+    </div>
+
+</div>
+
+<!--------------------------------  end of tabs  ---->
+
+</section>
+</div>
+</div>
+
+<!----  buttons  ---->
+
+<!----  a note from saestrah: remember to edit the mobile follow button to follow your own blog!  ---->
+
+<a class="cc"><span class="las la-bars"></span></a>
+<a class="mobilenav" title="mobile navigation"><span class="las la-bars"></span></a>
+<a class="stclose" title="close sidebar" hidden="hidden"><span class="las la-times"></span></a>
+<a class="nightbtn" title="night mode"><span class="las la-moon"></span></a>
+<a class="daybtn" title="day mode" hidden="hidden"><span class="las la-sun"></span></a>
+<a class="bfontbtn" title="change font size">Aa</a>
+<a class="sfontbtn" title="change font size" hidden="hidden">Aa</a>
+<a class="followbtn" href="https://tumblr.com/follow/YOUR BLOG URL" title="follow YOUR BLOG URL"><span class="las la-plus"></span></a>
+<a class="top" href="/" title="back to top"><span class="las la-arrow-up"></span></a>
+<a class="credit" href="https://saestrah.tumblr.com" title="saestrah themes" target="_blank"><span class="las la-hat-cowboy"></span></a>
+
+<!--------------------------------  scripts  ---->
+
+<!----  scroll to top by paul underwood  ---->
+
+<script>
+$(document).ready(function(){
+    $(".rightwrap").scroll(function(){
+        if ($(this).scrollTop() > 100) {
+            $(".top").fadeIn();
+        } else {
+            $(".top").fadeOut();
+        }
+    });
+ 
+    $(".top").click(function(){
+        $(".rightwrap").animate({scrollTop : 0},800);
+        return false;
+    });
+ 
+});
+</script>
+
+<!----  tooltips by malihu  ---->
+
+<script type="text/javascript">
+(function($){
+    $(document).ready(function(){
+        $("[title]").style_my_tooltips({
+            tip_follows_cursor:true,
+            tip_delay_time:200,
+            tip_fade_speed:300
+        });
+    });
+})(jQuery);
+</script>
+
+<!--------------------------------  end of scripts  ---->
+
+</body>
+</html>
